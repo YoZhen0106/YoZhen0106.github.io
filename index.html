@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>包含圖片的網頁</title>
+    <title>使用 Flexbox 排版和三張圖片的網頁</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,20 +19,35 @@
             text-align: center;
         }
 
-        section {
+        /* 使用 flexbox 進行排版 */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             margin: 20px;
             padding: 20px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        }
+
+        /* 用於圖片和按鈕的內容區塊，水平排布 */
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around; /* 讓圖片分散排列 */
+            align-items: center;
+            width: 100%;
+            max-width: 1000px; /* 限制內容寬度 */
+            margin: 20px 0;
+            gap: 20px; /* 圖片之間的間距 */
         }
 
         img {
-            max-width: 100%;
+            max-width: 30%; /* 圖片佔總寬度的 30% */
             height: auto;
             border-radius: 8px;
-            margin: 20px 0;
         }
 
         button {
@@ -43,25 +58,41 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 20px;
         }
 
         button:hover {
             background-color: #2980b9;
+        }
+
+        /* 在手機上圖片垂直排列 */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column; /* 小螢幕時垂直排列 */
+            }
+
+            img {
+                max-width: 80%; /* 圖片在小螢幕時寬度變大些 */
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>歡迎來到我的圖片網站</h1>
+        <h1>歡迎來到我的 Flexbox 網頁</h1>
     </header>
 
-    <section>
+    <section class="container">
         <h2>這是網頁的主要區塊</h2>
-        <p>這裡放置了一張圖片，並有一個按鈕供使用者點擊。</p>
+        <p>這裡放置了三張圖片和一個按鈕，使用 Flexbox 排版。</p>
         
-        <!-- 插入圖片 -->
-        <img src="https://i.imgur.com/fDptgqj.png" alt="範例圖片">
+        <div class="content">
+            <!-- 三張圖片 -->
+            <img src="https://via.placeholder.com/300x200" alt="範例圖片1">
+            <img src="https://via.placeholder.com/300x200" alt="範例圖片2">
+            <img src="https://via.placeholder.com/300x200" alt="範例圖片3">
+        </div>
 
         <!-- 按鈕 -->
         <button onclick="alert('你點擊了按鈕！')">點擊我！</button>
@@ -69,4 +100,3 @@
 
 </body>
 </html>
-
